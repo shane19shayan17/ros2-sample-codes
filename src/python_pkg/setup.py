@@ -25,9 +25,9 @@ setup(
     entry_points={
         'console_scripts': [
             'template = python_pkg.template:main',
-            'python_node = python_pkg.python_node:main',
-            'subscriber_node = python_pkg.subscriber:main',
-            'server_node = python_pkg.python_server:main',
+            'python_piblisher_node = python_pkg.python_publisher:main',
+            'python_subscriber_node = python_pkg.python_subscriber:main',
+            'python_server_node = python_pkg.python_server:main',
         ],
     },
 )

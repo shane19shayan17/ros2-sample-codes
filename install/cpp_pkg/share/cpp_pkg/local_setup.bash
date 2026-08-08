@@ -1,0 +1,1 @@
+/home/shayo/coding/learn_ros2/build/cpp_pkg/ament_cmake_environment_hooks/local_setup.bash
