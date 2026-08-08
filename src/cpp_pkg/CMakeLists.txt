@@ -8,38 +8,40 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(example_interfaces REQUIRED)
-add_executable(cpp_node
-                src/cpp_node.cpp
-                src/modules/Run.cpp
-)
-ament_target_dependencies(
-  cpp_node
-  "rclcpp"
-)
-target_include_directories(cpp_node PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(cpp_node PUBLIC c_std_99 cxx_std_17)
-add_executable(cpp_subscriber
+find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+
+
+add_executable(cpp_subscriber_node
                 src/cpp_subscriber.cpp
 )
 ament_target_dependencies(
-  cpp_subscriber
+  cpp_subscriber_node
   "rclcpp"
-  "example_interfaces"
+  "std_msgs"
 )
-add_executable(cpp_publisher
+
+add_executable(cpp_publisher_node
                 src/cpp_publisher.cpp
 )
 ament_target_dependencies(
-  cpp_publisher
+  cpp_publisher_node
   "rclcpp"
-  "example_interfaces"
+  "std_msgs"
 )
+
+add_executable(cpp_service_node
+                src/cpp_service.cpp
+)
+ament_target_dependencies(
+  cpp_service_node
+  "rclcpp"
+  "std_srvs"
+)
+
 install(TARGETS
-  cpp_node
-  cpp_subscriber
-  cpp_publisher
+  cpp_subscriber_node
+  cpp_publisher_node
+  cpp_service_node
   DESTINATION lib/${PROJECT_NAME})
 ament_package()

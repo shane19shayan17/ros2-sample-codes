@@ -271,7 +271,7 @@ SITE:STRING=shane
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 
 //Path to a library.
-_lib:FILEPATH=/opt/ros/humble/lib/libexample_interfaces__rosidl_typesupport_fastrtps_cpp.so
+_lib:FILEPATH=/opt/ros/humble/lib/libstd_srvs__rosidl_typesupport_fastrtps_cpp.so
 
 //The directory containing a CMake configuration file for action_msgs.
 action_msgs_DIR:PATH=/opt/ros/humble/share/action_msgs/cmake
@@ -341,6 +341,9 @@ cpp_pkg_SOURCE_DIR:STATIC=/home/shayo/coding/learn_ros2/src/cpp_pkg
 
 //The directory containing a CMake configuration file for example_interfaces.
 example_interfaces_DIR:PATH=/opt/ros/humble/share/example_interfaces/cmake
+
+//The directory containing a CMake configuration file for example_interfacesstd_msgs.
+example_interfacesstd_msgs_DIR:PATH=example_interfacesstd_msgs_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for fastcdr.
 fastcdr_DIR:PATH=/opt/ros/humble/lib/cmake/fastcdr
@@ -465,8 +468,23 @@ spdlog_vendor_DIR:PATH=/opt/ros/humble/share/spdlog_vendor/cmake
 //The directory containing a CMake configuration file for statistics_msgs.
 statistics_msgs_DIR:PATH=/opt/ros/humble/share/statistics_msgs/cmake
 
+//The directory containing a CMake configuration file for std_m.
+std_m_DIR:PATH=std_m_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for std_msg.
+std_msg_DIR:PATH=std_msg_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/humble/share/std_msgs/cmake
+
+//The directory containing a CMake configuration file for std_s.
+std_s_DIR:PATH=std_s_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for std_srv.
+std_srv_DIR:PATH=std_srv_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for std_srvs.
+std_srvs_DIR:PATH=/opt/ros/humble/share/std_srvs/cmake
 
 //The directory containing a CMake configuration file for tracetools.
 tracetools_DIR:PATH=/opt/ros/humble/share/tracetools/cmake
