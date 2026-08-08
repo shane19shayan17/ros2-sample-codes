@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/shayo/coding/learn_ros2/build/cpp_pkg/cpp_node" "/home/shayo/coding/learn_ros2/build/cpp_pkg/cpp_subscriber" "/home/shayo/coding/learn_ros2/build/cpp_pkg/cpp_publisher" "TARGETS" "cpp_node" "cpp_subscriber" "cpp_publisher" "DESTINATION" "lib/cpp_pkg")

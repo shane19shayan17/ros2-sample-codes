@@ -1,0 +1,5 @@
+[console_scripts]
+python_node = python_pkg.python_node:main
+server_node = python_pkg.python_server:main
+subscriber_node = python_pkg.subscriber:main
+

@@ -1,0 +1,27 @@
+[0.010s] Invoking command in '/home/shayo/coding/learn_ros2/build/cpp_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --build /home/shayo/coding/learn_ros2/build/cpp_pkg -- -j16 -l16
+[0.056s] [35m[1mConsolidate compiler generated dependencies of target cpp_node[0m
+[0.071s] [ 33%] [32mBuilding CXX object CMakeFiles/cpp_node.dir/src/modules/Run.cpp.o[0m
+[0.071s] [ 66%] [32mBuilding CXX object CMakeFiles/cpp_node.dir/src/cpp_node.cpp.o[0m
+[1.868s] [100%] [32m[1mLinking CXX executable cpp_node[0m
+[1.986s] [100%] Built target cpp_node
+[1.996s] Invoked command in '/home/shayo/coding/learn_ros2/build/cpp_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --build /home/shayo/coding/learn_ros2/build/cpp_pkg -- -j16 -l16
+[2.009s] Invoking command in '/home/shayo/coding/learn_ros2/build/cpp_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --install /home/shayo/coding/learn_ros2/build/cpp_pkg
+[2.018s] -- Install configuration: ""
+[2.019s] -- Installing: /home/shayo/coding/learn_ros2/install/cpp_pkg/lib/cpp_pkg/cpp_node
+[2.020s] -- Set runtime path of "/home/shayo/coding/learn_ros2/install/cpp_pkg/lib/cpp_pkg/cpp_node" to ""
+[2.020s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/package_run_dependencies/cpp_pkg
+[2.020s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/parent_prefix_path/cpp_pkg
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/ament_prefix_path.sh
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/ament_prefix_path.dsv
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/path.sh
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/path.dsv
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.bash
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.sh
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.zsh
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.dsv
+[2.021s] -- Installing: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/package.dsv
+[2.021s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/packages/cpp_pkg
+[2.022s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/cmake/cpp_pkgConfig.cmake
+[2.022s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/cmake/cpp_pkgConfig-version.cmake
+[2.022s] -- Up-to-date: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/package.xml
+[2.024s] Invoked command in '/home/shayo/coding/learn_ros2/build/cpp_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --install /home/shayo/coding/learn_ros2/build/cpp_pkg

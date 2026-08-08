@@ -1,0 +1,136 @@
+[0.000000] (-) TimerEvent: {}
+[0.000542] (cpp_pkg) JobQueued: {'identifier': 'cpp_pkg', 'dependencies': OrderedDict()}
+[0.000630] (python_pkg) JobQueued: {'identifier': 'python_pkg', 'dependencies': OrderedDict()}
+[0.000660] (cpp_pkg) JobStarted: {'identifier': 'cpp_pkg'}
+[0.004206] (python_pkg) JobStarted: {'identifier': 'python_pkg'}
+[0.007437] (cpp_pkg) JobProgress: {'identifier': 'cpp_pkg', 'progress': 'cmake'}
+[0.007974] (cpp_pkg) JobProgress: {'identifier': 'cpp_pkg', 'progress': 'build'}
+[0.008070] (cpp_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/shayo/coding/learn_ros2/build/cpp_pkg', '--', '-j16', '-l16'], 'cwd': '/home/shayo/coding/learn_ros2/build/cpp_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'shayo'), ('LC_TIME', 'az_IR'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/shayo'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'az_IR'), ('MANAGERPID', '2270'), ('SYSTEMD_EXEC_PID', '2641'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '7475'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'shayo'), ('JOURNAL_STREAM', '8:24806'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'shayo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/shane:@/tmp/.ICE-unix/2423,unix/shane:/tmp/.ICE-unix/2423'), ('INVOCATION_ID', '0bbc5ac8e6e24e5caa23fbcc7ae0e274'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'az_IR'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'az_IR'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.TOX1T3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install/python_pkg:/home/shayo/coding/learn_ros2/install/cpp_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'az_IR'), ('TERMINATOR_UUID', 'urn:uuid:c827459e-2347-4ec7-8be2-3db082170205'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'az_IR'), ('LC_IDENTIFICATION', 'az_IR'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/shayo/coding/learn_ros2/build/cpp_pkg'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/shayo/coding/learn_ros2/build/python_pkg:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'az_IR'), ('LC_PAPER', 'az_IR'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install/cpp_pkg:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble')]), 'shell': False}
+[0.029136] (cpp_pkg) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099929] (-) TimerEvent: {}
+[0.117081] (cpp_pkg) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.121293] (cpp_pkg) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.139080] (cpp_pkg) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.140584] (cpp_pkg) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.144424] (cpp_pkg) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.150433] (cpp_pkg) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.158137] (cpp_pkg) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.178404] (cpp_pkg) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.179246] (cpp_pkg) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.200095] (-) TimerEvent: {}
+[0.250336] (cpp_pkg) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.283357] (cpp_pkg) StdoutLine: {'line': b'-- Found example_interfaces: 0.9.3 (/opt/ros/humble/share/example_interfaces/cmake)\n'}
+[0.300202] (-) TimerEvent: {}
+[0.342238] (python_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/python_pkg', 'build', '--build-base', '/home/shayo/coding/learn_ros2/build/python_pkg/build', 'install', '--record', '/home/shayo/coding/learn_ros2/build/python_pkg/install.log', '--install-scripts', '$base/lib/python_pkg', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/shayo/coding/learn_ros2/src/python_pkg', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'shayo', 'LC_TIME': 'az_IR', 'XDG_SESSION_TYPE': 'wayland', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/shayo', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'az_IR', 'MANAGERPID': '2270', 'SYSTEMD_EXEC_PID': '2641', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '7475', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/shayo/coding/learn_ros2/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'shayo', 'JOURNAL_STREAM': '8:24806', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'shayo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/shane:@/tmp/.ICE-unix/2423,unix/shane:/tmp/.ICE-unix/2423', 'INVOCATION_ID': '0bbc5ac8e6e24e5caa23fbcc7ae0e274', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'az_IR', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'LC_TELEPHONE': 'az_IR', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.TOX1T3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/shayo/coding/learn_ros2/install/python_pkg:/home/shayo/coding/learn_ros2/install/cpp_pkg:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'az_IR', 'TERMINATOR_UUID': 'urn:uuid:c827459e-2347-4ec7-8be2-3db082170205', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'az_IR', 'LC_IDENTIFICATION': 'az_IR', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/shayo/coding/learn_ros2/build/python_pkg', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/shayo/coding/learn_ros2/build/python_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:/home/shayo/coding/learn_ros2/build/python_pkg:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'az_IR', 'LC_PAPER': 'az_IR', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/shayo/coding/learn_ros2/install/cpp_pkg'}, 'shell': False}
+[0.351471] (cpp_pkg) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.360230] (cpp_pkg) StdoutLine: {'line': b'-- Generating done\n'}
+[0.363717] (cpp_pkg) StdoutLine: {'line': b'-- Build files have been written to: /home/shayo/coding/learn_ros2/build/cpp_pkg\n'}
+[0.384405] (cpp_pkg) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target cpp_subscriber\x1b[0m\n'}
+[0.384940] (cpp_pkg) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target cpp_node\x1b[0m\n'}
+[0.385831] (cpp_pkg) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/cpp_publisher.dir/src/cpp_publisher.cpp.o\x1b[0m\n'}
+[0.395029] (cpp_pkg) StdoutLine: {'line': b'[ 57%] Built target cpp_node\n'}
+[0.397451] (cpp_pkg) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/cpp_subscriber.dir/src/cpp_subscriber.cpp.o\x1b[0m\n'}
+[0.400294] (-) TimerEvent: {}
+[0.476547] (python_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[0.477068] (python_pkg) StdoutLine: {'line': b'writing ../../build/python_pkg/python_pkg.egg-info/PKG-INFO\n'}
+[0.477115] (python_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/python_pkg/python_pkg.egg-info/dependency_links.txt\n'}
+[0.477258] (python_pkg) StdoutLine: {'line': b'writing entry points to ../../build/python_pkg/python_pkg.egg-info/entry_points.txt\n'}
+[0.477342] (python_pkg) StdoutLine: {'line': b'writing requirements to ../../build/python_pkg/python_pkg.egg-info/requires.txt\n'}
+[0.477386] (python_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/python_pkg/python_pkg.egg-info/top_level.txt\n'}
+[0.478273] (python_pkg) StdoutLine: {'line': b"reading manifest file '../../build/python_pkg/python_pkg.egg-info/SOURCES.txt'\n"}
+[0.478732] (python_pkg) StdoutLine: {'line': b"writing manifest file '../../build/python_pkg/python_pkg.egg-info/SOURCES.txt'\n"}
+[0.478844] (python_pkg) StdoutLine: {'line': b'running build\n'}
+[0.478882] (python_pkg) StdoutLine: {'line': b'running build_py\n'}
+[0.479045] (python_pkg) StdoutLine: {'line': b'running install\n'}
+[0.479162] (python_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[0.479979] (python_pkg) StdoutLine: {'line': b'running install_data\n'}
+[0.480018] (python_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.481079] (python_pkg) StdoutLine: {'line': b"removing '/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages/python_pkg-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[0.481266] (python_pkg) StdoutLine: {'line': b'Copying ../../build/python_pkg/python_pkg.egg-info to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages/python_pkg-0.0.0-py3.10.egg-info\n'}
+[0.481779] (python_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[0.495155] (python_pkg) StdoutLine: {'line': b'Installing python_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg\n'}
+[0.495191] (python_pkg) StdoutLine: {'line': b'Installing subscriber_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg\n'}
+[0.495252] (python_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/shayo/coding/learn_ros2/build/python_pkg/install.log'\n"}
+[0.500363] (-) TimerEvent: {}
+[0.510182] (python_pkg) CommandEnded: {'returncode': 0}
+[0.519091] (python_pkg) JobEnded: {'identifier': 'python_pkg', 'rc': 0}
+[0.600464] (-) TimerEvent: {}
+[0.700693] (-) TimerEvent: {}
+[0.800880] (-) TimerEvent: {}
+[0.901038] (-) TimerEvent: {}
+[1.001208] (-) TimerEvent: {}
+[1.101351] (-) TimerEvent: {}
+[1.201456] (-) TimerEvent: {}
+[1.301557] (-) TimerEvent: {}
+[1.401713] (-) TimerEvent: {}
+[1.502040] (-) TimerEvent: {}
+[1.602317] (-) TimerEvent: {}
+[1.702507] (-) TimerEvent: {}
+[1.802609] (-) TimerEvent: {}
+[1.902762] (-) TimerEvent: {}
+[2.002889] (-) TimerEvent: {}
+[2.103010] (-) TimerEvent: {}
+[2.203159] (-) TimerEvent: {}
+[2.303379] (-) TimerEvent: {}
+[2.403582] (-) TimerEvent: {}
+[2.503902] (-) TimerEvent: {}
+[2.604236] (-) TimerEvent: {}
+[2.704585] (-) TimerEvent: {}
+[2.743412] (cpp_pkg) StdoutLine: {'line': b'[ 85%] \x1b[32m\x1b[1mLinking CXX executable cpp_publisher\x1b[0m\n'}
+[2.804712] (-) TimerEvent: {}
+[2.857017] (cpp_pkg) StdoutLine: {'line': b'[ 85%] Built target cpp_publisher\n'}
+[2.904811] (-) TimerEvent: {}
+[3.005102] (-) TimerEvent: {}
+[3.105454] (-) TimerEvent: {}
+[3.205788] (-) TimerEvent: {}
+[3.306133] (-) TimerEvent: {}
+[3.406459] (-) TimerEvent: {}
+[3.506773] (-) TimerEvent: {}
+[3.607087] (-) TimerEvent: {}
+[3.707416] (-) TimerEvent: {}
+[3.807749] (-) TimerEvent: {}
+[3.908064] (-) TimerEvent: {}
+[4.008380] (-) TimerEvent: {}
+[4.108703] (-) TimerEvent: {}
+[4.209032] (-) TimerEvent: {}
+[4.309365] (-) TimerEvent: {}
+[4.409687] (-) TimerEvent: {}
+[4.510014] (-) TimerEvent: {}
+[4.610448] (-) TimerEvent: {}
+[4.710789] (-) TimerEvent: {}
+[4.811106] (-) TimerEvent: {}
+[4.911426] (-) TimerEvent: {}
+[5.011741] (-) TimerEvent: {}
+[5.112078] (-) TimerEvent: {}
+[5.212409] (-) TimerEvent: {}
+[5.245602] (cpp_pkg) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable cpp_subscriber\x1b[0m\n'}
+[5.312527] (-) TimerEvent: {}
+[5.412909] (-) TimerEvent: {}
+[5.500359] (cpp_pkg) StdoutLine: {'line': b'[100%] Built target cpp_subscriber\n'}
+[5.510667] (cpp_pkg) CommandEnded: {'returncode': 0}
+[5.511577] (cpp_pkg) JobProgress: {'identifier': 'cpp_pkg', 'progress': 'install'}
+[5.512986] (-) TimerEvent: {}
+[5.523019] (cpp_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/shayo/coding/learn_ros2/build/cpp_pkg'], 'cwd': '/home/shayo/coding/learn_ros2/build/cpp_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'shayo'), ('LC_TIME', 'az_IR'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/shayo'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'az_IR'), ('MANAGERPID', '2270'), ('SYSTEMD_EXEC_PID', '2641'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '7475'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'shayo'), ('JOURNAL_STREAM', '8:24806'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'shayo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/shane:@/tmp/.ICE-unix/2423,unix/shane:/tmp/.ICE-unix/2423'), ('INVOCATION_ID', '0bbc5ac8e6e24e5caa23fbcc7ae0e274'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'az_IR'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'az_IR'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.TOX1T3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install/python_pkg:/home/shayo/coding/learn_ros2/install/cpp_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'az_IR'), ('TERMINATOR_UUID', 'urn:uuid:c827459e-2347-4ec7-8be2-3db082170205'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'az_IR'), ('LC_IDENTIFICATION', 'az_IR'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/shayo/coding/learn_ros2/build/cpp_pkg'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/shayo/coding/learn_ros2/build/python_pkg:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'az_IR'), ('LC_PAPER', 'az_IR'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/shayo/coding/learn_ros2/install/cpp_pkg:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble')]), 'shell': False}
+[5.531162] (cpp_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[5.531463] (cpp_pkg) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[5.531720] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/lib/cpp_pkg/cpp_node\n'}
+[5.531791] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/lib/cpp_pkg/cpp_subscriber\n'}
+[5.531859] (cpp_pkg) StdoutLine: {'line': b'-- Symlinking: /home/shayo/coding/learn_ros2/install/cpp_pkg/lib/cpp_pkg/cpp_publisher\n'}
+[5.542690] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/package_run_dependencies/cpp_pkg\n'}
+[5.542919] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/parent_prefix_path/cpp_pkg\n'}
+[5.542994] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/ament_prefix_path.sh\n'}
+[5.543096] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/ament_prefix_path.dsv\n'}
+[5.543211] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/path.sh\n'}
+[5.543324] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/environment/path.dsv\n'}
+[5.543442] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.bash\n'}
+[5.543504] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.sh\n'}
+[5.543597] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.zsh\n'}
+[5.543686] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/local_setup.dsv\n'}
+[5.543804] (cpp_pkg) StdoutLine: {'line': b'-- Symlinking: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/package.dsv\n'}
+[5.555827] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/ament_index/resource_index/packages/cpp_pkg\n'}
+[5.556249] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/cmake/cpp_pkgConfig.cmake\n'}
+[5.556375] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/cmake/cpp_pkgConfig-version.cmake\n'}
+[5.556459] (cpp_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/shayo/coding/learn_ros2/install/cpp_pkg/share/cpp_pkg/package.xml\n'}
+[5.560183] (cpp_pkg) CommandEnded: {'returncode': 0}
+[5.575440] (cpp_pkg) JobEnded: {'identifier': 'cpp_pkg', 'rc': 0}
+[5.575974] (-) EventReactorShutdown: {}

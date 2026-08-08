@@ -1,0 +1,13 @@
+[0.009s] Invoking command in '/home/shayo/coding/learn_ros2/build/cpp_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --build /home/shayo/coding/learn_ros2/build/cpp_pkg -- -j16 -l16
+[0.039s] [35m[1mConsolidate compiler generated dependencies of target cpp_node[0m
+[0.052s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_node.dir/src/cpp_node.cpp.o[0m
+[1.799s] [100%] [32m[1mLinking CXX executable cpp_node[0m
+[1.866s] /usr/bin/ld: CMakeFiles/cpp_node.dir/src/cpp_node.cpp.o: in function `CPPNode::timer_callback()':
+[1.866s] cpp_node.cpp:(.text._ZN7CPPNode14timer_callbackEv[_ZN7CPPNode14timer_callbackEv]+0x1e): undefined reference to `Run::run()'
+[1.866s] /usr/bin/ld: CMakeFiles/cpp_node.dir/src/cpp_node.cpp.o: in function `CPPNode::CPPNode(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)':
+[1.866s] cpp_node.cpp:(.text._ZN7CPPNodeC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN7CPPNodeC5ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0xd7): undefined reference to `Run::Run()'
+[1.870s] collect2: error: ld returned 1 exit status
+[1.872s] gmake[2]: *** [CMakeFiles/cpp_node.dir/build.make:151: cpp_node] Error 1
+[1.872s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/cpp_node.dir/all] Error 2
+[1.872s] gmake: *** [Makefile:146: all] Error 2
+[1.874s] Invoked command in '/home/shayo/coding/learn_ros2/build/cpp_pkg' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/shayo/coding/learn_ros2/install/python_pkg:/opt/ros/humble /usr/bin/cmake --build /home/shayo/coding/learn_ros2/build/cpp_pkg -- -j16 -l16

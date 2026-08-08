@@ -1,0 +1,21 @@
+[0.525s] Invoking command in '/home/shayo/coding/learn_ros2/build/python_pkg': PYTHONPATH=/home/shayo/coding/learn_ros2/build/python_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/shayo/coding/learn_ros2/build/python_pkg/build --no-deps symlink_data --force
+[0.678s] running develop
+[0.755s] running egg_info
+[0.755s] writing python_pkg.egg-info/PKG-INFO
+[0.755s] writing dependency_links to python_pkg.egg-info/dependency_links.txt
+[0.755s] writing entry points to python_pkg.egg-info/entry_points.txt
+[0.755s] writing requirements to python_pkg.egg-info/requires.txt
+[0.755s] writing top-level names to python_pkg.egg-info/top_level.txt
+[0.756s] reading manifest file 'python_pkg.egg-info/SOURCES.txt'
+[0.757s] writing manifest file 'python_pkg.egg-info/SOURCES.txt'
+[0.757s] running build_ext
+[0.758s] Creating /home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages/python-pkg.egg-link (link to .)
+[0.758s] Installing python_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg
+[0.758s] Installing server_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg
+[0.758s] Installing subscriber_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg
+[0.758s] 
+[0.758s] Installed /home/shayo/coding/learn_ros2/build/python_pkg
+[0.758s] running symlink_data
+[0.758s] symbolically linking /home/shayo/coding/learn_ros2/build/python_pkg/resource/python_pkg -> /home/shayo/coding/learn_ros2/install/python_pkg/share/ament_index/resource_index/packages
+[0.759s] symbolically linking /home/shayo/coding/learn_ros2/build/python_pkg/package.xml -> /home/shayo/coding/learn_ros2/install/python_pkg/share/python_pkg
+[0.776s] Invoked command in '/home/shayo/coding/learn_ros2/build/python_pkg' returned '0': PYTHONPATH=/home/shayo/coding/learn_ros2/build/python_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/shayo/coding/learn_ros2/build/python_pkg/build --no-deps symlink_data --force

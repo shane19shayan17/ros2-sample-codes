@@ -1,0 +1,12 @@
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/uninstall.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/cpp_pkg_uninstall.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/cpp_node.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/cpp_subscriber.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/cpp_publisher.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/test.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/edit_cache.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/rebuild_cache.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/list_install_components.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/install.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/install/local.dir
+/home/shayo/coding/learn_ros2/src/build/CMakeFiles/install/strip.dir

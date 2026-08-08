@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/cpp_pub.dir/src/cpp_subscriber.cpp.o -o cpp_pub 

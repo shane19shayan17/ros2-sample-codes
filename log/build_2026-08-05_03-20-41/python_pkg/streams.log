@@ -1,0 +1,21 @@
+[0.351s] Invoking command in '/home/shayo/coding/learn_ros2/src/python_pkg': PYTHONPATH=/home/shayo/coding/learn_ros2/build/python_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/python_pkg build --build-base /home/shayo/coding/learn_ros2/build/python_pkg/build install --record /home/shayo/coding/learn_ros2/build/python_pkg/install.log --install-scripts $base/lib/python_pkg --single-version-externally-managed install_data
+[0.487s] running egg_info
+[0.487s] writing ../../build/python_pkg/python_pkg.egg-info/PKG-INFO
+[0.487s] writing dependency_links to ../../build/python_pkg/python_pkg.egg-info/dependency_links.txt
+[0.487s] writing entry points to ../../build/python_pkg/python_pkg.egg-info/entry_points.txt
+[0.487s] writing requirements to ../../build/python_pkg/python_pkg.egg-info/requires.txt
+[0.487s] writing top-level names to ../../build/python_pkg/python_pkg.egg-info/top_level.txt
+[0.489s] reading manifest file '../../build/python_pkg/python_pkg.egg-info/SOURCES.txt'
+[0.489s] writing manifest file '../../build/python_pkg/python_pkg.egg-info/SOURCES.txt'
+[0.489s] running build
+[0.489s] running build_py
+[0.489s] running install
+[0.489s] running install_lib
+[0.490s] running install_data
+[0.490s] running install_egg_info
+[0.491s] removing '/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages/python_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[0.492s] Copying ../../build/python_pkg/python_pkg.egg-info to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages/python_pkg-0.0.0-py3.10.egg-info
+[0.492s] running install_scripts
+[0.506s] Installing python_node script to /home/shayo/coding/learn_ros2/install/python_pkg/lib/python_pkg
+[0.507s] writing list of installed files to '/home/shayo/coding/learn_ros2/build/python_pkg/install.log'
+[0.526s] Invoked command in '/home/shayo/coding/learn_ros2/src/python_pkg' returned '0': PYTHONPATH=/home/shayo/coding/learn_ros2/build/python_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shayo/coding/learn_ros2/install/python_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/python_pkg build --build-base /home/shayo/coding/learn_ros2/build/python_pkg/build install --record /home/shayo/coding/learn_ros2/build/python_pkg/install.log --install-scripts $base/lib/python_pkg --single-version-externally-managed install_data
