@@ -1,25 +1,29 @@
 import rclpy
 from rclpy.node import Node
 
-from example_interfaces.srv import SetBool
+from std_srvs.srv import SetBool
 
 class PythonServer(Node):
-    def __init__(self, node_name : str):
-        super().__init__(node_name = node_name)
+    def __init__(self):
+        super().__init__("python_server_node")
         
         self.service_ = self.create_service(
-            SetBool, "set_bool", self.set_bool_callback)
+            SetBool,
+            "first_service",
+            self.set_bool_callback)
         
     def set_bool_callback(self, request, response):
         response.success = True
         response.message = f"bool has seted to {request.data} successfully"
+        
+        self.get_logger().info(f"msg -> {response.message}, success -> {response.success}")
         return response
 
 
 def main(args = None):
     rclpy.init(args = args)
     
-    node = PythonServer("python_server_node")
+    node = PythonServer()
     rclpy.spin(node)
     
     rclpy.shutdown()

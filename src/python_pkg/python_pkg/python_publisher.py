@@ -3,7 +3,6 @@ from rclpy.node import Node
 
 from std_msgs.msg import Int32
 
-
 class CustomNode(Node):
     def __init__(self):
         super().__init__("python_publisher_node")
