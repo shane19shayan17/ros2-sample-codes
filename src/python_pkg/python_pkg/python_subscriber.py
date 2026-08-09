@@ -9,7 +9,7 @@ class SubscriberNode(Node):
         
         self.subscriber_ = self.create_subscription(
             Int32,
-            "first_topic",
+            "second_topic",
             self.subscriber,
             10
         )

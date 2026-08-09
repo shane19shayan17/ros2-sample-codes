@@ -12,6 +12,15 @@ find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 
 
+add_executable(cpp_template_node
+                src/template.cpp
+                src/modules/Logger.cpp
+)
+ament_target_dependencies(
+  cpp_template_node
+  "rclcpp"
+)
+
 add_executable(cpp_subscriber_node
                 src/cpp_subscriber.cpp
 )
@@ -19,6 +28,7 @@ ament_target_dependencies(
   cpp_subscriber_node
   "rclcpp"
   "std_msgs"
+  "std_srvs"
 )
 
 add_executable(cpp_publisher_node
@@ -40,6 +50,7 @@ ament_target_dependencies(
 )
 
 install(TARGETS
+  cpp_template_node
   cpp_subscriber_node
   cpp_publisher_node
   cpp_service_node

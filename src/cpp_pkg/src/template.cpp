@@ -1,5 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 
+#include "../include/cpp_pkg/Logger.hpp"
+
 class TemplateNode : public rclcpp::Node
 {
 private:
