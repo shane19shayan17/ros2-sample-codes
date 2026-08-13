@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(messages REQUIRED)
 
 
 add_executable(cpp_template_node
@@ -29,6 +30,7 @@ ament_target_dependencies(
   "rclcpp"
   "std_msgs"
   "std_srvs"
+  "messages"
 )
 
 add_executable(cpp_publisher_node
