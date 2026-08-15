@@ -7,6 +7,8 @@ private:
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
     int counter_{0};
+    int frequency_{0};
+    std::vector<int64_t> test{0, 0, 0};
 
     // ================================
     // publisher
@@ -30,12 +32,22 @@ public:
     {
         RCLCPP_INFO(this->get_logger(), "node creted !");
 
+        this->declare_parameter("frequency", 1000);
+        frequency_ = this->get_parameter("frequency").as_int();
+
+        this->declare_parameter("test", std::vector<int64_t>{0, 0, 1});
+        test = this->get_parameter("test").as_integer_array();
+        for (int i = 0; i < 3; i++)
+        {
+            RCLCPP_INFO(this->get_logger(), "i index -> %ld", test[i]);
+        }
+
         publisher_ = this->create_publisher<std_msgs::msg::Int32>(
             "first_topic",
             10);
 
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(1000),
+            std::chrono::milliseconds(frequency_),
             std::bind(&PublisherNode::publisher, this));
     }
 };

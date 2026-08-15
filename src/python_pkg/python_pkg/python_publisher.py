@@ -7,6 +7,9 @@ class CustomNode(Node):
     def __init__(self):
         super().__init__("python_publisher_node")
         
+        self.declare_parameter("frequency", 1.0)
+        self.frequency_ = self.get_parameter("frequency").value
+        
         self.publisher_ = self.create_publisher(
             Velocity,
             "first_topic",
@@ -16,7 +19,7 @@ class CustomNode(Node):
         self.counter_ = 0.0
         
         self.timer_ = self.create_timer(
-            1,
+            self.frequency_,
             self.publisher_callback
         )
     
