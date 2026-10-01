@@ -39,7 +39,7 @@ add_executable(cpp_publisher_node
 ament_target_dependencies(
   cpp_publisher_node
   "rclcpp"
-  "std_msgs"
+  "messages"
 )
 
 add_executable(cpp_service_node

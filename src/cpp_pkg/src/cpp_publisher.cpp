@@ -1,26 +1,33 @@
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
+#include "messages/msg/velocity.hpp"
+
+using Velocity = messages::msg::Velocity;
 
 class PublisherNode : public rclcpp::Node
 {
 private:
-    rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr publisher_;
+    rclcpp::Publisher<Velocity>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
     int counter_{0};
     int frequency_{0};
-    std::vector<int64_t> test{0, 0, 0};
 
     // ================================
     // publisher
     // ================================
     void publisher()
     {
-        std_msgs::msg::Int32 msg = std_msgs::msg::Int32();
-        msg.data = counter_;
+        Velocity msg = Velocity();
+        msg.velocity_x = counter_ * 100.0;
+        msg.velocity_y = counter_ * 10.0;
+        msg.velocity_z = counter_ * 1.0;
         counter_++;
 
         publisher_->publish(msg);
-        RCLCPP_INFO(this->get_logger(), "publish -> %d", msg.data);
+        RCLCPP_INFO(this->get_logger(),
+                    "publish -> x: %f, y: %f, z: %f",
+                    msg.velocity_x,
+                    msg.velocity_y,
+                    msg.velocity_z);
     }
 
 public:
@@ -32,17 +39,10 @@ public:
     {
         RCLCPP_INFO(this->get_logger(), "node creted !");
 
-        this->declare_parameter("frequency", 1000);
+        this->declare_parameter<int>("frequency", 1000);
         frequency_ = this->get_parameter("frequency").as_int();
 
-        this->declare_parameter("test", std::vector<int64_t>{0, 0, 1});
-        test = this->get_parameter("test").as_integer_array();
-        for (int i = 0; i < 3; i++)
-        {
-            RCLCPP_INFO(this->get_logger(), "i index -> %ld", test[i]);
-        }
-
-        publisher_ = this->create_publisher<std_msgs::msg::Int32>(
+        publisher_ = this->create_publisher<Velocity>(
             "first_topic",
             10);
 
