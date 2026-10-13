@@ -25,8 +25,9 @@ class ActionNode(Node):
         # execute the goal
         self.get_logger().info(f'action executing with goal : {goal}')
         counter = 1
-        for i in range(goal):
-            counter * i
+        for i in range(1, goal + 1):
+            counter *= i
+            self.get_logger().info(f'counter : {counter}')
             time.sleep(1)
         # set goal final stste
         goalHandle.succeed()
