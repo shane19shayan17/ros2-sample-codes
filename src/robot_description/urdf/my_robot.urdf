@@ -46,6 +46,30 @@
         </visual>
     </link>
     
+    <link name="back_left_tire_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.03"/>
+            </geometry>
+
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 1.57"/>
+        
+            <material name="black" />
+        </visual>
+    </link>
+
+    <link name="back_right_tire_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.03"/>
+            </geometry>
+
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 1.57"/>
+        
+            <material name="black" />
+        </visual>
+    </link>
+
     <joint name="base_front_right_tire_joint" type="continuous">
         <parent link="base_link"/>
         <child link="front_right_tire_link"/>
@@ -57,6 +81,20 @@
         <parent link="base_link"/>
         <child link="front_left_tire_link"/>
         <origin xyz="0.125 0.085 0.02" rpy="0.0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <joint name="base_back_left_tire_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="back_left_tire_link"/>
+        <origin xyz="-0.125 0.085 0.02" rpy="0.0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <joint name="base_back_right_tire_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="back_right_tire_link"/>
+        <origin xyz="-0.125 -0.085 0.02" rpy="0.0 0 0"/>
         <axis xyz="0 1 0"/>
     </joint>
 </robot>

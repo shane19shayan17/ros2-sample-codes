@@ -30,6 +30,7 @@ setup(
             'python_server_node = python_pkg.python_server:main',
             'python_client_node = python_pkg.python_client:main',
             'python_client_empty_node = python_pkg.python_client_empty:main',
+            'python_action_server_node = python_pkg.python_action_server:main',
         ],
     },
 )
