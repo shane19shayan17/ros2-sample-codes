@@ -3,6 +3,7 @@ from launch_ros.actions import Node
 
 from os import path
 from ament_index_python.packages import get_package_share_directory
+import xacro
 
 def generate_launch_description():
     
@@ -11,7 +12,7 @@ def generate_launch_description():
     urdf_path = path.join(
         pkg_root,
         'urdf',
-        'test_urdf.urdf'
+        'test_urdf.urdf.xacro'
     )
     rviz_config_path = path.join(
         pkg_root,
@@ -19,9 +20,8 @@ def generate_launch_description():
         'r2d2.rviz'
     )
     
-    with open(urdf_path, 'r') as f:
-        robot_description = f.read()
-    
+    xacro_file = xacro.process_file(urdf_path)
+    robot_description = xacro_file.toxml()
     
     return LaunchDescription([
         Node(
