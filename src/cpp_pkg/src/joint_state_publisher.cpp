@@ -31,16 +31,21 @@ private:
         // Update timestamp
         joint_state.header.stamp = this->get_clock()->now();
 
-        // ⚠️ IMPORTANT: Must match the exact joint names defined in your URDF
         joint_state.name = {"base_to_link_1", "link_1_link_2", "link_2_link_3"};
 
         // Calculate elapsed time for smooth animation (radians)
         auto elapsed = (this->get_clock()->now() - start_time_).seconds();
 
+        // joint_state.position = {
+        //     std::sin(elapsed),       // Joint 1
+        //     std::cos(elapsed) * 0.25, // Joint 2
+        //     std::sin(elapsed * 0.25)  // Joint 3
+        // };
+
         joint_state.position = {
-            std::sin(elapsed),       // Joint 1
-            std::cos(elapsed) * 0.25, // Joint 2
-            std::sin(elapsed * 0.25)  // Joint 3
+            0.0, // Joint 1
+            0.0, // Joint 2
+            0.0  // Joint 3
         };
 
         // Publish the message

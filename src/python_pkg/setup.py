@@ -33,6 +33,7 @@ setup(
             'python_action_server_node = python_pkg.python_action_server:main',
             'python_action_clinet_node = python_pkg.python_action_clinet:main',
             'tf_listener_node = python_pkg.tf_listener_node:main',
+            'arm_controller_node = python_pkg.arm_controller:main',
         ],
     },
 )
