@@ -8,14 +8,13 @@ class EndEffectorTFListener(Node):
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         # Query the transform every second
-        self.timer = self.create_timer(1.0, self.tf_listener_callback)
+        self.timer = self.create_timer(0.50, self.tf_listener_callback)
 
     def tf_listener_callback(self):
         try:
-            # Look up transform from base 'world' to end-effector 'ee_link'
             t = self.tf_buffer.lookup_transform(
-                'base_link',
-                'end_effector',
+                'base_link', # name of base link in urdf
+                'end_effector', # name of end effector in urdf
                 rclpy.time.Time()
             )
             self.get_logger().info(

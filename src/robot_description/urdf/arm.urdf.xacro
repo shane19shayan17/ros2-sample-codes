@@ -3,17 +3,20 @@
 
     <xacro:include filename="common_properties.urdf.xacro" />
 
-    <xacro:property name="link_1_height" value="0.4" />
+    <xacro:property name="link_1_length" value="0.4" />
+    <xacro:property name="link_1_width" value="0.05" />
+    <xacro:property name="link_2_length" value="0.4" />
+    <xacro:property name="link_3_length" value="0.5" />
     <xacro:property name="base_height" value="0.1" />
     <xacro:property name="pi_2" value="1.57075" />
 
-    <xacro:macro name="arm" params="prefix length r p y">
+    <xacro:macro name="arm" params="prefix length r p yaw x y z">
         <link name="${prefix}_arm">
             <visual>
                 <geometry>
-                    <box size="${length} 0.05 0.05"/>
+                    <box size="${length} ${link_1_width} ${link_1_width}"/>
                 </geometry>
-                <origin rpy="${r} ${p} ${y}"/>
+                <origin xyz="${x} ${y} ${z}" rpy="${r} ${p} ${yaw}"/>
                 <material name="white"/>
             </visual>
         </link>
@@ -41,20 +44,38 @@
         </visual>
     </link>
 
-    <xacro:arm prefix="link_1" length="${link_1_height}" r="0.0" p="${pi_2}" y="0.0"/>
+    <xacro:arm prefix="link_1" length="${link_1_length}" x="0.0" y="0.0" z="${link_1_length / 2.0}" r="0.0" p="${pi_2}" yaw="0.0"/>
     <joint name="base_to_link_1" type="revolute">
         <parent link="base_link"/>
         <child link="link_1_arm"/>
-        <origin xyz="0.0 0.0 0.30"/>
+        <origin xyz="0.0 0.0 ${base_height}"/>
         <axis xyz="0 0 1"/>
         <limit lower="-${pi_2 * 2}" upper="3.14" effort="100.0" velocity="1.0"/>
     </joint>
 
+    <xacro:arm prefix="link_2" length="${link_2_length}" x="${(link_2_length - link_1_width) / 2.0}" y="0.0" z="0.0" r="0.0" p="0.0" yaw="0.0"/>
+    <joint name="link_1_link_2" type="revolute">
+        <parent link="link_1_arm"/>
+        <child link="link_2_arm"/>
+        <origin xyz="0.0 -${link_1_width} ${link_1_length - link_1_width / 2.0}"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-${pi_2 * 2}" upper="${pi_2 * 2}" effort="100.0" velocity="1.0"/>
+    </joint>
+
+    <xacro:arm prefix="link_3" length="${link_3_length}" x="${(link_3_length - link_1_width) / 2.0}" y="0.0" z="0.0" r="0.0" p="0.0" yaw="0.0"/>
+    <joint name="link_2_link_3" type="revolute">
+        <parent link="link_2_arm"/>
+        <child link="link_3_arm"/>
+        <origin xyz="${link_2_length - link_1_width} ${link_1_width} 0.0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-${pi_2 * 2}" upper="${pi_2 * 2}" effort="100.0" velocity="1.0"/>
+    </joint>
+
     <xacro:end_effector/>
     <joint name="end_effector" type="fixed">
-        <parent link="link_1_arm"/>
+        <parent link="link_3_arm"/>
         <child link="end_effector"/>
-        <origin xyz="0.0 0.0 ${link_1_height / 2.0}"/>
+        <origin xyz="${link_3_length - link_1_width / 2.0} 0.0 0.0"/>
     </joint>
 
 </robot>
