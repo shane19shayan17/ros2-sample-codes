@@ -32,6 +32,7 @@ setup(
             'python_client_empty_node = python_pkg.python_client_empty:main',
             'python_action_server_node = python_pkg.python_action_server:main',
             'python_action_clinet_node = python_pkg.python_action_clinet:main',
+            'tf_listener = python_pkg.tf_listener_node:main',
         ],
     },
 )

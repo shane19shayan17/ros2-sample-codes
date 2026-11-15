@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="common_properties.urdf.xacro" />
+
+    <xacro:property name="link_1_height" value="0.4" />
+    <xacro:property name="base_height" value="0.1" />
+    <xacro:property name="pi_2" value="1.57075" />
+
+    <xacro:macro name="arm" params="prefix length r p y">
+        <link name="${prefix}_arm">
+            <visual>
+                <geometry>
+                    <box size="${length} 0.05 0.05"/>
+                </geometry>
+                <origin rpy="${r} ${p} ${y}"/>
+                <material name="white"/>
+            </visual>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="end_effector" params="">
+        <link name="end_effector">
+            <visual>
+                <geometry>
+                    <box size="0.0 0.0 0.0"/>
+                </geometry>
+                <origin rpy="0.0 0.0 0.0"/>
+                <material name="white"/>
+            </visual>
+        </link>
+    </xacro:macro>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder length="${base_height}" radius="0.15"/>
+            </geometry>
+            <material name="grey" />
+            <origin xyz="0.0 0.0 0.05"/>
+        </visual>
+    </link>
+
+    <xacro:arm prefix="link_1" length="${link_1_height}" r="0.0" p="${pi_2}" y="0.0"/>
+    <joint name="base_to_link_1" type="revolute">
+        <parent link="base_link"/>
+        <child link="link_1_arm"/>
+        <origin xyz="0.0 0.0 0.30"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-${pi_2 * 2}" upper="3.14" effort="100.0" velocity="1.0"/>
+    </joint>
+
+    <xacro:end_effector/>
+    <joint name="end_effector" type="fixed">
+        <parent link="link_1_arm"/>
+        <child link="end_effector"/>
+        <origin xyz="0.0 0.0 ${link_1_height / 2.0}"/>
+    </joint>
+
+</robot>
+

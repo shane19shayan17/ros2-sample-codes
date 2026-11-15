@@ -13,6 +13,8 @@
     <material name="melo_pink">
         <color rgba="1 0 0.8 1"/>
     </material>
-
+    <material name="grey">
+        <color rgba="0.2 0.3 0.2 1"/>
+    </material>
 </robot>
 
