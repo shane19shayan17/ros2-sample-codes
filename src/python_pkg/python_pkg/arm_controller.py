@@ -11,15 +11,13 @@ class CustomNode(Node):
         
         self.ik_solver = IKSolver(self.get_logger(), 100)
         
-        a = np.array([
-            [0,1],
-            [1,2],
-            ])
-        b = np.array([
-                    [1,2],
-                    [1,1],
-                    ])
-        print(self.ik_solver.computeGoalFromBodyframe(a, b))
+        a = self.ik_solver.computeErrorTwist(np.array([
+            [1,0,0, 0],
+            [0,0,-1, 1],
+            [0,1,0, 2],
+            [0,0,0,1],
+            ]))
+        self.get_logger().info(f'{a}')
         
         self.create_timer(
             0.5,
