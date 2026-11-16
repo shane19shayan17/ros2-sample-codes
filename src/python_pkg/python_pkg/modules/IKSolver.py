@@ -9,6 +9,36 @@ class IKSolver():
         self.maxIteration_: int = maxIteration
         self.theta: np.array = np.array([])
     
+    def getSkewSymmetric(self, T: np.array):
+        """
+        Converts a 3D vector v = [v_x, v_y, v_z] into a 3x3 skew-symmetric matrix [v].
+        
+        Parameters:
+        - v: numpy array or list of shape (3,)
+        
+        Returns:
+        - A 3x3 numpy array representing the skew-symmetric matrix.
+        """
+        vx, vy, vz = T
+        return np.array([
+            [ 0.0, -vz,  vy],
+            [ vz,  0.0, -vx],
+            [-vy,  vx,  0.0]
+        ])
+    
+    def getGMatrix(self, theta: float, twist_symmetric: np.ndarray):
+        """
+        Computes the generator matrix G(theta) for the translation component.
+        Formula: G(theta) = I*theta + (1 - cos(theta))*[omega] + (theta - sin(theta))*[omega]^2
+        """
+        size_ = twist_symmetric.shape[0] 
+        
+        return (
+            theta * np.eye(size_) 
+            + (1.0 - np.cos(theta)) * twist_symmetric 
+            + (theta - np.sin(theta)) * np.dot(twist_symmetric, twist_symmetric)
+        )
+    
     def computeGoalFromBodyframe(self, T_from_d_to_s: np.ndarray, T_from_b_to_s: np.ndarray) -> np.ndarray:
         """
         Calculates the relative transformation matrix T_bd from the current pose T_sb 
