@@ -84,8 +84,79 @@ class IKSolver():
         
         return V_b
     
-    def solve_IK(self, TD_S: np.array, theta0: np.array):
+    def computeAdjoint(self, T: np.ndarray) -> np.ndarray:
+        """
+        Computes the 6x6 Adjoint matrix for a 4x4 transformation matrix T.
+        Ad_T = [[R, 0], 
+                [[p]_hat @ R, R]]
+        """
+        R = T[0:3, 0:3]
+        p = T[0:3, 3]
+        
+        # Create the 3x3 skew-symmetric matrix [p]
+        p_hat = np.array([
+            [0, -p[2], p[1]],
+            [p[2], 0, -p[0]],
+            [-p[1], p[0], 0]
+        ])
+        
+        # Assemble the 6x6 Adjoint matrix
+        zero_3x3 = np.zeros(R.shape)
+        ad_T = np.block([
+            [R, zero_3x3],
+            [np.dot(p_hat, R), R]
+        ])
+        
+        return ad_T
+    
+    def matrix_exp(skew_symmetric_matrix: np.ndarray, theta: float) -> np.ndarray:
+        """
+        Computes the matrix exponential e^([B] * theta) for a 4x4 twist matrix [B].
+        [B] = [[omega_hat, v], [0, 0]]
+        """
+        
+        # Extract angular velocity vector omega from omega_hat
+        omega = np.array([omega_hat[2, 1], omega_hat[0, 2], omega_hat[1, 0]])
+        omega_norm = np.linalg.norm(omega)
+        
+        T = np.eye(4)
+        
+        # Pure translation case
+        if np.isclose(omega_norm, 0.0):
+            T[0:3, 3] = v * theta
+        else:
+            # Normalized rotation axis and scaled angle
+            omega_axis = omega / omega_norm
+            theta_scaled = omega_norm * theta
+            
+            
+            # Rodrigues' formula for rotation R
+            R = (
+                np.eye(3) 
+                + np.sin(theta_scaled) * skew_symmetric_matrix
+                + (1.0 - np.cos(theta_scaled)) * np.dot(skew_symmetric_matrix, skew_symmetric_matrix)
+            )
+            return R
+            
+            # Generator matrix G for translation component p
+            G = (
+                np.eye(3) * theta_scaled 
+                + (1.0 - np.cos(theta_scaled)) * omg_mat 
+                + (theta_scaled - np.sin(theta_scaled)) * np.dot(omg_mat, omg_mat)
+            )
+            p = np.dot(G, v)
+            
+            T[0:3, 0:3] = R
+            T[0:3, 3] = p
+            
+        return T
+    
+    def solve_IK(self, TD_S: np.array, T_SB, theta0: np.array):
         for i in range(self.maxIteration_):
-            d_theta = np.array([]) # should be calculated
+            t_from_d_to_b = self.computeGoalFromBodyframe(TD_S, T_SB)
+            twist_error = self.computeErrorTwist(t_from_d_to_b)
+            
+            
+            d_theta = twist_error # theta_dot = J_inverse @ Twist error
             self.theta += d_theta
             self.logger_.info(f'{i}')
