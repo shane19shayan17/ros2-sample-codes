@@ -2,6 +2,7 @@ from rclpy.impl.rcutils_logger import RcutilsLogger
 
 import numpy as np
 from .robot_confgis_generator import ParseURDF
+from .matrix_computation import matrixComputer
 
 
 class IKSolver():
@@ -14,7 +15,12 @@ class IKSolver():
             "/home/shayo/coding/learn_ros2/src/robot_description/urdf/arm.urdf",
             ["base_to_link_1", "link_1_link_2", "link_2_link_3", "end_effector"]
             )
-        self.Slist, self.Blist, self.M = self.urdfParser.parse()
+        self.Slist, self.Blist, self.homeMatrix, self.omegaList, self.vList = self.urdfParser.parse()
+        logger.info(f'\n{self.omegaList}\n{self.vList}')
+        self.matrix = matrixComputer()
+    
+    def computeJointExponential(self):
+        pass
     
     def getSkewSymmetric(self, T: np.array):
         """

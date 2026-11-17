@@ -19,6 +19,12 @@ class matrixComputer():
                 + (1 - np.cos(theta_radian)) * np.dot(symmetric_matrix, symmetric_matrix)
         return w_hat_2
     
+    def compute_joint_exponential(self, rotational: np.ndarray, tranlatinal: np.ndarray):
+        T = np.eye(4)
+        T[:3, :3] = rotational
+        T[:3, 3] = tranlatinal
+        return T
+    
 if __name__ == "__main__":
     m = matrixComputer()
     v = np.array([1, 2, 3])

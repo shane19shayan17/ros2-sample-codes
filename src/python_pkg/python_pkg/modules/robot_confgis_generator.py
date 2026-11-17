@@ -53,9 +53,30 @@ class ParseURDF():
         Slist = np.array(S_cols).T                 # 6 x n
         Blist = mr.Adjoint(mr.TransInv(M)) @ Slist # body screws
         return Slist, Blist, M
+    
+    def parse_omega_and_v_list(self, Slist: np.ndarray):
+        
+        if Slist.ndim != 2 or Slist.shape[0] != 6:
+            raise ValueError(
+                f"Slist should be a 6×n matrix but it has shape {Slist.shape}"
+            )
 
-    def parse(self):
-        return self.urdf_to_screws(self.urdf_path_, self.joints_name_)
+        omega_list = Slist[:3, :].copy()
+        v_list = Slist[3:, :].copy() 
+        return omega_list.T, v_list.T
+    
+    def parse(self): 
+        """
+            retutn:
+            S : S list of joints
+            B : B list of joints
+            M : home matrix (zero configuration)
+            omega : angular velocity list list of joints
+            v : linear velocity list of joints
+        """
+        S, B, M = self.urdf_to_screws(self.urdf_path_, self.joints_name_)
+        omega, v = self.parse_omega_and_v_list(S)
+        return S, B, M, omega, v
 
 def main():
     pass
