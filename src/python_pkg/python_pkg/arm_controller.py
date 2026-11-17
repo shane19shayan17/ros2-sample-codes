@@ -24,7 +24,18 @@ class CustomNode(Node):
         )
         
         self.ik_solver = IKSolver(self.get_logger(), 100)
-                
+        
+        e = np.array([
+            [1, 0, 0,  1],
+            [0, -1, 0, 0],
+            [0, 0, -1, 0],
+            [0, 0, 0, 1],
+        ])
+        # a = self.ik_solver.computeTwistError(e)
+        a = self.ik_solver.getRotationAngle(e[:3, :3])
+        
+        self.get_logger().info(f'\n{a}')
+        
         self.create_timer(
             0.5,
             self.run
@@ -46,7 +57,7 @@ class CustomNode(Node):
         self.ik_solver.computeJointsTransformMatrix()
     
     def run(self):
-        self.tf_listener_()
+        # self.tf_listener_()
         pass
 
 

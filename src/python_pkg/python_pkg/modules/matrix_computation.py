@@ -26,6 +26,30 @@ class matrixComputer():
                 + (theta_radian - np.sin(theta_radian)) * np.dot(symmetric_matrix, symmetric_matrix)
         return G
     
+    def compute_inverse_generator_matrix(self, omega_hat: np.ndarray, theta_radian: float):
+        """
+        Computes the inverse generator matrix G^-1(theta) for SE(3) matrix logarithm.
+        
+        Parameters:
+        - theta: float, the rotation angle in radians.
+        - omega_hat: np.ndarray, the 3x3 skew-symmetric matrix of the rotation axis [omega].
+        
+        Returns:
+        - G_inv: nxn (3X3) numpy array representing G^{-1}(theta).
+        """
+        size_ = omega_hat.shape[0]
+        # Handle the numerical singularity or zero rotation case
+        if np.isclose(theta_radian, 0.0):
+            return np.eye(size_)
+            
+        # Calculate cotangent of half the angle
+        cot_half = 1.0 / np.tan(theta_radian / 2.0)
+        
+        G_inv = (
+            (1.0 / theta_radian) * np.eye(size_) - 0.5 * omega_hat + (1.0 / theta_radian - 0.5 * cot_half) * np.dot(omega_hat, omega_hat)
+        )
+        return G_inv
+    
     def quaternion_to_rotation_matrix(self, x, y, z, w):
         """Convert a quaternion (x, y, z, w) to a 3x3 rotation matrix.
 

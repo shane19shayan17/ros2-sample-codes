@@ -21,7 +21,7 @@ class IKSolver():
         self.joint_states_ = np.array([])
         
         # transform matrix given from ros
-        self.transfromMatrix_ = np.ndarray([])
+        self.transformMatrix_ = np.ndarray([])
     
     def set_joint_angles(self, joint_angles: np.array):
         """
@@ -36,11 +36,9 @@ class IKSolver():
         R = self.matrix.quaternion_to_rotation_matrix(r.x, r.y, r.z, r.w)
         t = ros2_msg.transform.translation
         
-        T = np.eye(4)
-        T[:3, :3] = R
-        T[:3, 3] = [t.x, t.y, t.z]
-        self.logger_.info(f'\n\n{T}')
-        return T
+        self.transformMatrix_ = np.eye(4)
+        self.transformMatrix_[:3, :3] = R
+        self.transformMatrix_[:3, 3] = [t.x, t.y, t.z]
     
     def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float) -> np.ndarray:
         """
@@ -75,12 +73,11 @@ class IKSolver():
             T = self.computeJointExponential(w, v, theta)
             T_from_body_to_base = np.dot(T_from_body_to_base, T)
         T_from_body_to_base = np.dot(T_from_body_to_base, self.homeMatrix)
-        self.logger_.info(f'\nfrom E :\n{T_from_body_to_base}\n--------------')
     
     def getTranslateMatrix(self, G: np.ndarray, V: np.array) -> np.array:
         return np.dot(G, V)
     
-    def computeGoalFromBodyframe(self, T_from_d_to_s: np.ndarray, T_from_b_to_s: np.ndarray) -> np.ndarray:
+    def computeErrorMatrix(self, T_from_d_to_s: np.ndarray, T_from_b_to_s: np.ndarray) -> np.ndarray:
         """
         Calculates the relative transformation matrix T_bd from the current pose T_sb 
         to the desired target pose T_sd.
@@ -90,70 +87,72 @@ class IKSolver():
         T_from_d_to_b = np.dot(T_sb_inv, T_from_d_to_s)
         return T_from_d_to_b
     
-    def getTheta(self, R: np.ndarray) -> float:
-        cos_theta = (np.trace(R) - 1) / 2.0
-        cos_theta = np.clip(cos_theta, -1.0, 1.0)
-        return np.arccos(cos_theta)
+    import numpy as np
 
-    def getOmegaAndOmegaHat(self,theta: float, R: np.ndarray) -> tuple:
+    def getRotationAngle(self, R: np.ndarray) -> float:
         """
-        calculating skew-symmetric from rotational matrix
+        Computes the rotation angle theta in [0, pi] of a 3x3 rotation matrix R.
+
+        Uses theta = atan2(||sin_vec||, cos_part), which stays accurate for
+        theta near 0 and theta near pi, where arccos(trace) loses precision.
+
         Args:
-            R (np.ndarray): rotational matrix
+            R (np.ndarray): 3x3 rotation matrix (R^T R = I, det R = 1)
 
         Returns:
-            np.array: omega matrix which is the skew-symmetric
-        """        
-        # handle pure rotations
-        if np.isclose(theta, 0.0):
-            return np.zeros(R.shape[0]), np.zeros(R.shape)
-        
-        omega_hat = (R - R.T) / (2 * np.sin(theta))
-        omega = np.array([omega_hat[2, 1], omega_hat[0, 2], omega_hat[1, 0]])
-        return omega, omega_hat
+            float: rotation angle theta in radians
+        """
+        R = np.asarray(R, dtype=float)
+        if R.shape != (3, 3):
+            raise ValueError(f"R must be 3x3, got shape {R.shape}")
+
+        # cos(theta) = (tr(R) - 1) / 2
+        cos_part = (np.trace(R) - 1.0) / 2.0
+
+        # sin(theta) * k = vee(R - R^T) / 2
+        sin_vec = np.array([
+            R[2, 1] - R[1, 2],
+            R[0, 2] - R[2, 0],
+            R[1, 0] - R[0, 1],
+        ]) / 2.0
+        sin_norm = np.linalg.norm(sin_vec)
+
+        return float(np.arctan2(sin_norm, cos_part))
     
-    def getGInverseMatrix(self, theta: float, omega_hat: np.ndarray) -> np.ndarray:
-        """
-        Computes the inverse generator matrix G^-1(theta) for SE(3) matrix logarithm.
-        
-        Parameters:
-        - theta: float, the rotation angle in radians.
-        - omega_hat: np.ndarray, the 3x3 skew-symmetric matrix of the rotation axis [omega].
-        
-        Returns:
-        - G_inv: nxn (3X3) numpy array representing G^{-1}(theta).
-        """
-        size_ = omega_hat.shape[0]
-        # Handle the numerical singularity or zero rotation case
-        if np.isclose(theta, 0.0):
-            return np.eye(size_)
-            
-        # Calculate cotangent of half the angle
-        cot_half = 1.0 / np.tan(theta / 2.0)
-        
-        G_inv = (
-            (1.0 / theta) * np.eye(size_) 
-            - 0.5 * omega_hat 
-            + (1.0 / theta - 0.5 * cot_half) * np.dot(omega_hat, omega_hat)
-        )
-        return G_inv
+    def getThetaAndOmega(self, R: np.ndarray):
+        """returns theta (stable) and unit axis; handles theta = 0 and theta = pi"""
+        sin_vec = np.array([R[2, 1] - R[1, 2],
+                            R[0, 2] - R[2, 0],
+                            R[1, 0] - R[0, 1]]) / 2.0          # = sin(theta) * axis
+        sin_norm = np.linalg.norm(sin_vec)
+        cos_part = (np.trace(R) - 1.0) / 2.0
+        theta = np.arctan2(sin_norm, cos_part)                 # stable, no clip needed
 
-    def computeErrorTwist(self, T_bd: np.ndarray) -> np.ndarray:
-        """
-        Computes the matrix logarithm (error twist V_b) from T_bd using pure NumPy.
-        Dennotes T_bd as [[R, p], [0, 1]].
-        """
-        R = T_bd[0:3, 0:3]
-        p = T_bd[0:3, 3]
+        if sin_norm > 1e-8:                                    # regular case
+            axis = sin_vec / sin_norm
+        elif theta < 1e-8:                                     # identity
+            return 0.0, np.zeros(3)
+        else:  # theta close to pi
+            B = (R + np.eye(3)) / 2.0
+            col = B[:, np.argmax(np.diag(B))]
+            axis = col / np.linalg.norm(col)
+            if np.dot(axis, sin_vec) < 0:   # match the sign of sin(theta)*k
+                axis = -axis
+        return theta, axis
 
-        theta = self.getTheta(R)
-        
-        omega, omega_hat = self.getOmegaAndOmegaHat(theta, R)
-        G_inverse = self.getGInverseMatrix(theta, omega_hat)
-        v = np.dot(G_inverse, p)
-        V_b = np.concatenate([omega, v])
-        
-        return V_b
+    def computeTwistError(self, error_matrix: np.ndarray) -> np.ndarray:
+        R = error_matrix[0:3, 0:3]
+        p = error_matrix[0:3, 3]
+
+        theta, axis = self.getThetaAndOmega(R)
+        if theta < 1e-8:
+            return np.concatenate([np.zeros(3), p])
+
+        w_hat = self.matrix.compute_symmetric(axis)
+        theta_Ginv = self.matrix.compute_inverse_generator_matrix(w_hat, theta) * theta
+        v = theta_Ginv @ p
+        omega = theta * axis
+        return np.concatenate([omega, v])  
     
     def computeAdjoint(self, T: np.ndarray) -> np.ndarray:
         """
@@ -231,10 +230,11 @@ class IKSolver():
     def compute_J_inverse(self, J: np.ndarray) -> np.ndarray:
         pass
     
-    def solve_IK(self, TD_S: np.array, T_SB, theta0: np.array):
+    def solve_IK(self, TD_S: np.array, theta0: np.array):
         for i in range(self.maxIteration_):
-            t_from_d_to_b = self.computeGoalFromBodyframe(TD_S, T_SB)
-            twist_error = self.computeErrorTwist(t_from_d_to_b)
+            # transform matrix is given from ros every step
+            error_matrix = self.computeErrorMatrix(TD_S, self.transformMatrix_)
+            twist_error = self.computeTwistError(error_matrix)
             
             jacobian = self.computeJacobian()
             J_inverse = self.compute_J_inverse(jacobian)
