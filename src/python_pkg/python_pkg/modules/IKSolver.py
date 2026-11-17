@@ -28,12 +28,26 @@ class IKSolver():
         """
         self.joint_states_ = joint_angles
     
-    def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float):
+    def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float) -> np.ndarray:
+        """
+        [
+            [e^[w].theta, t],
+            [0      ,     1]
+        ]
+        Args:
+            omega (np.ndarray): angular axes
+            v (np.ndarray): linear
+            theta_radian (float): joint angle
+
+        Returns:
+            T: exponential matrix
+        """
         omega_symmetric = self.matrix.compute_symmetric(omega)
         
         rotational = self.matrix.compute_exponential(omega_symmetric, theta_radian)
         
         G = self.matrix.compute_generator_matrix(omega_symmetric, theta_radian)
+        
         translational = np.dot(G, v)
         
         T = np.eye(4)
@@ -41,9 +55,12 @@ class IKSolver():
         T[:3, 3] = translational
         return T
     
-    def computeJointsExponentialTransform(self, theta_radian: float):
-        for w, v in zip(self.omegaList, self.vList):
-            T = self.computeJointExponential(w, v, theta_radian) # should give all joints angle
+    def computeJointsTransformMatrix(self):
+        T_from_body_to_base = np.eye(4)
+        for w, v, theta in zip(self.omegaList, self.vList, self.joint_states_):
+            T = self.computeJointExponential(w, v, theta)
+            T_from_body_to_base = np.dot(T_from_body_to_base, T)
+        T_from_body_to_base = np.dot(T_from_body_to_base, self.homeMatrix)
     
     def getSkewSymmetric(self, T: np.array):
         """
