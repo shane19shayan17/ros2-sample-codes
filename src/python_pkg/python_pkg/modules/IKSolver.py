@@ -17,6 +17,16 @@ class IKSolver():
             )
         self.Slist, self.Blist, self.homeMatrix, self.omegaList, self.vList = self.urdfParser.parse()
         self.matrix = matrixComputer()
+        
+        self.joint_states_ = np.array([])
+    
+    def set_joint_angles(self, joint_angles: np.array):
+        """
+        set joint angles
+        Args:
+            joint_angles (np.array): a array representing joint angles given from ros topic
+        """
+        self.joint_states_ = joint_angles
     
     def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float):
         omega_symmetric = self.matrix.compute_symmetric(omega)
@@ -30,6 +40,10 @@ class IKSolver():
         T[:3, :3] = rotational
         T[:3, 3] = translational
         return T
+    
+    def computeJointsExponentialTransform(self, theta_radian: float):
+        for w, v in zip(self.omegaList, self.vList):
+            T = self.computeJointExponential(w, v, theta_radian) # should give all joints angle
     
     def getSkewSymmetric(self, T: np.array):
         """

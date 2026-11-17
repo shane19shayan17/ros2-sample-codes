@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from tf2_ros import Buffer, TransformListener
+from sensor_msgs.msg import JointState
 
 
 from .modules.IKSolver import IKSolver
@@ -14,6 +15,13 @@ class CustomNode(Node):
         # tf from ros
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
+        
+        self.joint_angles_sub_ = self.create_subscription(
+            JointState,
+            "/joint_states",
+            self.joint_states_callback,
+            10
+        )
         
         self.ik_solver = IKSolver(self.get_logger(), 100)
         
@@ -57,6 +65,10 @@ class CustomNode(Node):
         # except Exception as ex:
         #     self.get_logger().info(f'Could not transform: {ex}')
         pass
+    
+    def joint_states_callback(self, msg: JointState):
+        self.ik_solver.set_joint_angles(np.asarray(msg.position))
+    
     def run(self):
         self.tf_listener_()
 
