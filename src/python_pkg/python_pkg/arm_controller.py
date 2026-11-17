@@ -37,25 +37,16 @@ class CustomNode(Node):
                 'end_effector', # name of end effector in urdf
                 rclpy.time.Time()
             )
-            end_effector_pose: np.ndarray = np.ndarray([])
-            # t.transform.rotation
-            self.get_logger().info(
-                f'X: {t.transform.translation.x:.3f}, '
-                f'Y: {t.transform.translation.y:.3f}, '
-                f'Z: {t.transform.translation.z:.3f}, '
-                f'x: {t.transform.rotation.x:.3f}, '
-                f'y: {t.transform.rotation.y:.3f}, '
-                f'z: {t.transform.rotation.z:.3f}'
-            )
+            self.ik_solver.set_transform_matrix(t)
         except Exception as ex:
             self.get_logger().info(f'Could not transform: {ex}')
     
     def joint_states_callback(self, msg: JointState):
         self.ik_solver.set_joint_angles(np.asarray(msg.position))
-        self.ik_solver.computeJointsTransformMatrix()        
+        self.ik_solver.computeJointsTransformMatrix()
     
     def run(self):
-        # self.tf_listener_()
+        self.tf_listener_()
         pass
 
 

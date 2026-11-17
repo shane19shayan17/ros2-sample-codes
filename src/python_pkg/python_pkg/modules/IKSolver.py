@@ -19,6 +19,9 @@ class IKSolver():
         self.matrix = matrixComputer()
         
         self.joint_states_ = np.array([])
+        
+        # transform matrix given from ros
+        self.transfromMatrix_ = np.ndarray([])
     
     def set_joint_angles(self, joint_angles: np.array):
         """
@@ -27,6 +30,17 @@ class IKSolver():
             joint_angles (np.array): a array representing joint angles given from ros topic
         """
         self.joint_states_ = joint_angles
+
+    def set_transform_matrix(self, ros2_msg) -> None:
+        r = ros2_msg.transform.rotation
+        R = self.matrix.quaternion_to_rotation_matrix(r.x, r.y, r.z, r.w)
+        t = ros2_msg.transform.translation
+        
+        T = np.eye(4)
+        T[:3, :3] = R
+        T[:3, 3] = [t.x, t.y, t.z]
+        self.logger_.info(f'\n\n{T}')
+        return T
     
     def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float) -> np.ndarray:
         """
@@ -61,36 +75,7 @@ class IKSolver():
             T = self.computeJointExponential(w, v, theta)
             T_from_body_to_base = np.dot(T_from_body_to_base, T)
         T_from_body_to_base = np.dot(T_from_body_to_base, self.homeMatrix)
-    
-    def getSkewSymmetric(self, T: np.array):
-        """
-        Converts a 3D vector v = [v_x, v_y, v_z] into a 3x3 skew-symmetric matrix [v].
-        
-        Parameters:
-        - v: numpy array or list of shape (3,)
-        
-        Returns:
-        - A 3x3 numpy array representing the skew-symmetric matrix.
-        """
-        vx, vy, vz = T
-        return np.array([
-            [ 0.0, -vz,  vy],
-            [ vz,  0.0, -vx],
-            [-vy,  vx,  0.0]
-        ])
-    
-    def getGMatrix(self, theta: float, twist_symmetric: np.ndarray) -> np.ndarray:
-        """
-        Computes the generator matrix G(theta) for the translation component.
-        Formula: G(theta) = I*theta + (1 - cos(theta))*[omega] + (theta - sin(theta))*[omega]^2
-        """
-        size_ = twist_symmetric.shape[0] 
-        
-        return (
-            theta * np.eye(size_) 
-            + (1.0 - np.cos(theta)) * twist_symmetric 
-            + (theta - np.sin(theta)) * np.dot(twist_symmetric, twist_symmetric)
-        )
+        self.logger_.info(f'\nfrom E :\n{T_from_body_to_base}\n--------------')
     
     def getTranslateMatrix(self, G: np.ndarray, V: np.array) -> np.array:
         return np.dot(G, V)
