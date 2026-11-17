@@ -1,0 +1,27 @@
+import numpy as np
+
+class matrixComputer():
+    def __init__(self):
+        pass
+    
+    def compute_symmetric(self, matrix: np.array):
+        x, y, z = matrix
+        return np.array([
+            [ 0.0, -z,  y],
+            [ z,  0.0, -x],
+            [-y,  x,  0.0]
+        ])
+    
+    def compute_exponential(self, symmetric_matrix: np.ndarray, theta_radian: float):
+        size_ = symmetric_matrix.shape[0]
+        w_hat_2 = np.eye(size_) \
+            + np.sin(theta_radian) * symmetric_matrix \
+                + (1 - np.cos(theta_radian)) * np.dot(symmetric_matrix, symmetric_matrix)
+        return w_hat_2
+    
+if __name__ == "__main__":
+    m = matrixComputer()
+    v = np.array([1, 2, 3])
+    w = m.compute_symmetric(v)
+    ew = m.compute_exponential(w, np.pi / 2)
+    print(ew)
