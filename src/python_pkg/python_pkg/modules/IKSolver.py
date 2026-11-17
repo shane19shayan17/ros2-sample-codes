@@ -16,11 +16,20 @@ class IKSolver():
             ["base_to_link_1", "link_1_link_2", "link_2_link_3", "end_effector"]
             )
         self.Slist, self.Blist, self.homeMatrix, self.omegaList, self.vList = self.urdfParser.parse()
-        logger.info(f'\n{self.omegaList}\n{self.vList}')
         self.matrix = matrixComputer()
     
-    def computeJointExponential(self):
-        pass
+    def computeJointExponential(self, omega: np.ndarray, v: np.ndarray, theta_radian: float):
+        omega_symmetric = self.matrix.compute_symmetric(omega)
+        
+        rotational = self.matrix.compute_exponential(omega_symmetric, theta_radian)
+        
+        G = self.matrix.compute_generator_matrix(omega_symmetric, theta_radian)
+        translational = np.dot(G, v)
+        
+        T = np.eye(4)
+        T[:3, :3] = rotational
+        T[:3, 3] = translational
+        return T
     
     def getSkewSymmetric(self, T: np.array):
         """

@@ -19,6 +19,13 @@ class matrixComputer():
                 + (1 - np.cos(theta_radian)) * np.dot(symmetric_matrix, symmetric_matrix)
         return w_hat_2
     
+    def compute_generator_matrix(self, symmetric_matrix: np.ndarray, theta_radian: float):
+        size_ = symmetric_matrix.shape[0]
+        G = np.eye(size_) * theta_radian \
+            + (1 - np.cos(theta_radian)) * symmetric_matrix \
+                + (theta_radian - np.sin(theta_radian)) * np.dot(symmetric_matrix, symmetric_matrix)
+        return G
+    
     def compute_joint_exponential(self, rotational: np.ndarray, tranlatinal: np.ndarray):
         T = np.eye(4)
         T[:3, :3] = rotational
@@ -30,4 +37,5 @@ if __name__ == "__main__":
     v = np.array([1, 2, 3])
     w = m.compute_symmetric(v)
     ew = m.compute_exponential(w, np.pi / 2)
-    print(ew)
+    g = m.compute_generator_matrix(w, np.pi / 2)
+    print(g)
