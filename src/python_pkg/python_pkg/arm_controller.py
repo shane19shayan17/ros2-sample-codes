@@ -1,5 +1,7 @@
 import rclpy
 from rclpy.node import Node
+from tf2_ros import Buffer, TransformListener
+
 
 from .modules.IKSolver import IKSolver
 import numpy as np
@@ -8,6 +10,10 @@ import numpy as np
 class CustomNode(Node):
     def __init__(self):
         super().__init__('arm_controller')
+        
+        # tf from ros
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
         
         self.ik_solver = IKSolver(self.get_logger(), 100)
         
@@ -20,15 +26,54 @@ class CustomNode(Node):
         b = np.array([1, 2, 3])
         c = self.ik_solver.getSkewSymmetric(b)
         d = self.ik_solver.getGMatrix(np.pi / 2, c)
-        self.get_logger().info(f'\n{d}')
+        e = self.ik_solver.getTranslateMatrix(d, np.array([2, 0, 3]))
+        self.get_logger().info(f'\n{e}')
         
         self.create_timer(
             0.5,
             self.run
         )
     
+    def tf_listener(self):
+        try:
+            t = self.tf_buffer.lookup_transform(
+                'base_link', # name of base link in urdf
+                'end_effector', # name of end effector in urdf
+                rclpy.time.Time()
+            )
+            end_effector_pose: np.ndarray = np.ndarray([])
+            # t.transform.rotation
+            self.get_logger().info(
+                f'X: {t.transform.translation.x:.3f}, '
+                f'Y: {t.transform.translation.y:.3f}, '
+                f'Z: {t.transform.translation.z:.3f}, '
+                f'x: {t.transform.rotation.x:.3f}, '
+                f'y: {t.transform.rotation.y:.3f}, '
+                f'z: {t.transform.rotation.z:.3f}'
+            )
+        except Exception as ex:
+            self.get_logger().info(f'Could not transform: {ex}')
+    
     def run(self):
-        pass
+        # self.tf_listener()
+        try:
+            t = self.tf_buffer.lookup_transform(
+                'base_link', # name of base link in urdf
+                'end_effector', # name of end effector in urdf
+                rclpy.time.Time()
+            )
+            end_effector_pose: np.ndarray = np.ndarray([])
+            # t.transform.rotation
+            self.get_logger().info(
+                f'X: {t.transform.translation.x:.3f}, '
+                f'Y: {t.transform.translation.y:.3f}, '
+                f'Z: {t.transform.translation.z:.3f}, '
+                f'x: {t.transform.rotation.x:.3f}, '
+                f'y: {t.transform.rotation.y:.3f}, '
+                f'z: {t.transform.rotation.z:.3f}'
+            )
+        except Exception as ex:
+            self.get_logger().info(f'Could not transform: {ex}')
 
 def main(args = None):
     rclpy.init(args = args)

@@ -1,6 +1,7 @@
 from rclpy.impl.rcutils_logger import RcutilsLogger
 
 import numpy as np
+from .robot_confgis_generator import ParseURDF
 
 
 class IKSolver():
@@ -8,6 +9,12 @@ class IKSolver():
         self.logger_ = logger
         self.maxIteration_: int = maxIteration
         self.theta: np.array = np.array([])
+        
+        self.urdfParser = ParseURDF(
+            "/home/shayo/coding/learn_ros2/src/robot_description/urdf/arm.urdf",
+            ["base_to_link_1", "link_1_link_2", "link_2_link_3", "end_effector"]
+            )
+        self.Slist, self.Blist, self.M = self.urdfParser.parse()
     
     def getSkewSymmetric(self, T: np.array):
         """
@@ -26,7 +33,7 @@ class IKSolver():
             [-vy,  vx,  0.0]
         ])
     
-    def getGMatrix(self, theta: float, twist_symmetric: np.ndarray):
+    def getGMatrix(self, theta: float, twist_symmetric: np.ndarray) -> np.ndarray:
         """
         Computes the generator matrix G(theta) for the translation component.
         Formula: G(theta) = I*theta + (1 - cos(theta))*[omega] + (theta - sin(theta))*[omega]^2
@@ -38,6 +45,9 @@ class IKSolver():
             + (1.0 - np.cos(theta)) * twist_symmetric 
             + (theta - np.sin(theta)) * np.dot(twist_symmetric, twist_symmetric)
         )
+    
+    def getTranslateMatrix(self, G: np.ndarray, V: np.array) -> np.array:
+        return np.dot(G, V)
     
     def computeGoalFromBodyframe(self, T_from_d_to_s: np.ndarray, T_from_b_to_s: np.ndarray) -> np.ndarray:
         """
@@ -181,12 +191,23 @@ class IKSolver():
             
         return T
     
+    def computeTransform(self):
+        pass
+    
+    def computeJacobian(self) -> np.ndarray:
+        pass
+    
+    def compute_J_inverse(self, J: np.ndarray) -> np.ndarray:
+        pass
+    
     def solve_IK(self, TD_S: np.array, T_SB, theta0: np.array):
         for i in range(self.maxIteration_):
             t_from_d_to_b = self.computeGoalFromBodyframe(TD_S, T_SB)
             twist_error = self.computeErrorTwist(t_from_d_to_b)
             
+            jacobian = self.computeJacobian()
+            J_inverse = self.compute_J_inverse(jacobian)
             
             d_theta = twist_error # theta_dot = J_inverse @ Twist error
-            self.theta += d_theta
+            self.theta += np.dot(J_inverse, d_theta)
             self.logger_.info(f'{i}')
