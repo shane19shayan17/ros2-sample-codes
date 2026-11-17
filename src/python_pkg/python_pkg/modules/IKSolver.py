@@ -87,8 +87,6 @@ class IKSolver():
         T_from_d_to_b = np.dot(T_sb_inv, T_from_d_to_s)
         return T_from_d_to_b
     
-    import numpy as np
-
     def getRotationAngle(self, R: np.ndarray) -> float:
         """
         Computes the rotation angle theta in [0, pi] of a 3x3 rotation matrix R.
@@ -118,33 +116,35 @@ class IKSolver():
         sin_norm = np.linalg.norm(sin_vec)
 
         return float(np.arctan2(sin_norm, cos_part))
-    
-    def getThetaAndOmega(self, R: np.ndarray):
-        """returns theta (stable) and unit axis; handles theta = 0 and theta = pi"""
-        sin_vec = np.array([R[2, 1] - R[1, 2],
-                            R[0, 2] - R[2, 0],
-                            R[1, 0] - R[0, 1]]) / 2.0          # = sin(theta) * axis
-        sin_norm = np.linalg.norm(sin_vec)
-        cos_part = (np.trace(R) - 1.0) / 2.0
-        theta = np.arctan2(sin_norm, cos_part)                 # stable, no clip needed
 
-        if sin_norm > 1e-8:                                    # regular case
-            axis = sin_vec / sin_norm
-        elif theta < 1e-8:                                     # identity
-            return 0.0, np.zeros(3)
-        else:  # theta close to pi
+    def computeOmegaAndOmegaHat(self, R: np.ndarray, theta: float) -> np.ndarray:
+        """
+        Computes the 3x3 skew-symmetric matrix [w] = theta * [k] from a rotation
+        matrix R and its angle theta, where k is the unit rotation axis.
+        """
+        R = np.asarray(R, dtype=float)
+
+        if np.isclose(theta, 0.0):
+            return np.zeros(3), np.zeros((3, 3))
+
+        if np.isclose(theta, 0.0):
+            return np.zeros(3), np.zeros((3, 3))
+        elif np.isclose(theta, np.pi):
             B = (R + np.eye(3)) / 2.0
             col = B[:, np.argmax(np.diag(B))]
-            axis = col / np.linalg.norm(col)
-            if np.dot(axis, sin_vec) < 0:   # match the sign of sin(theta)*k
-                axis = -axis
-        return theta, axis
+            omega = col / np.linalg.norm(col)
+            return omega, self.matrix.compute_symmetric(omega)
+
+        omega_hat = (R - R.T) / (2* np.sin(theta))
+
+        return self.matrix.compute_axes(omega_hat), omega_hat
 
     def computeTwistError(self, error_matrix: np.ndarray) -> np.ndarray:
         R = error_matrix[0:3, 0:3]
         p = error_matrix[0:3, 3]
 
         theta, axis = self.getThetaAndOmega(R)
+        theta = self.getRotationAngle(R)
         if theta < 1e-8:
             return np.concatenate([np.zeros(3), p])
 

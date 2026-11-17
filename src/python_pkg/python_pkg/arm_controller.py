@@ -26,13 +26,14 @@ class CustomNode(Node):
         self.ik_solver = IKSolver(self.get_logger(), 100)
         
         e = np.array([
-            [1, 0, 0,  1],
-            [0, -1, 0, 0],
+            [-1, 0, 0,  0],
+            [0, 1, 0, 0],
             [0, 0, -1, 0],
             [0, 0, 0, 1],
         ])
         # a = self.ik_solver.computeTwistError(e)
-        a = self.ik_solver.getRotationAngle(e[:3, :3])
+        t = self.ik_solver.getRotationAngle(e[:3, :3])
+        a, _ = self.ik_solver.computeOmegaAndOmegaHat(e[:3, :3], t)
         
         self.get_logger().info(f'\n{a}')
         

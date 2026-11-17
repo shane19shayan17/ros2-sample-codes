@@ -12,6 +12,11 @@ class matrixComputer():
             [-y,  x,  0.0]
         ])
     
+    def compute_axes(self, matrix: np.ndarray):
+        return np.array(
+            [matrix[2, 1] ,matrix[0, 2], matrix[1, 0]]
+        )
+    
     def compute_exponential(self, symmetric_matrix: np.ndarray, theta_radian: float):
         size_ = symmetric_matrix.shape[0]
         w_hat_2 = np.eye(size_) \
