@@ -52,18 +52,10 @@ ament_target_dependencies(
   "std_srvs"
 )
 
-add_executable(joint_state_publisher_node
-              src/joint_state_publisher.cpp)
-
-ament_target_dependencies(joint_state_publisher_node
-rclcpp
-sensor_msgs)
-
 install(TARGETS
   cpp_template_node
   cpp_subscriber_node
   cpp_publisher_node
   cpp_service_node
-  joint_state_publisher_node
   DESTINATION lib/${PROJECT_NAME})
 ament_package()
