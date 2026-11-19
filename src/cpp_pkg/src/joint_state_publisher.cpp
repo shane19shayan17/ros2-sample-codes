@@ -43,9 +43,9 @@ private:
         // };
 
         joint_state.position = {
-            0.0, // Joint 1
-            0.0, // Joint 2
-            0.0  // Joint 3
+            2.49995991e-01,  // Joint 1
+            -1.29216447e-05, // Joint 2
+            3.00024239e-01   // Joint 3
         };
 
         // Publish the message

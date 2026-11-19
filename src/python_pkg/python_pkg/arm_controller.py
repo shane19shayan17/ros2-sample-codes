@@ -6,7 +6,7 @@ from sensor_msgs.msg import JointState
 
 from .modules.IKSolver import IKSolver
 import numpy as np
-
+import modern_robotics as mr
 
 class CustomNode(Node):
     def __init__(self):
@@ -23,20 +23,16 @@ class CustomNode(Node):
             10
         )
         
+        # joint state publisher
+        self.joint_states_publisher_ = self.create_publisher(
+            JointState,
+            "joint_states",
+            10
+        )
+        
         self.ik_solver = IKSolver(self.get_logger(), 100)
         
-        e = np.array([
-            [-1, 0, 0,  0],
-            [0, 1, 0, 0],
-            [0, 0, -1, 0],
-            [0, 0, 0, 1],
-        ])
-        # a = self.ik_solver.computeTwistError(e)
-        t = self.ik_solver.getRotationAngle(e[:3, :3])
-        a, _ = self.ik_solver.computeOmegaAndOmegaHat(e[:3, :3], t)
-        
-        self.get_logger().info(f'\n{a}')
-        
+        self.is_angles_publised_ = False
         self.create_timer(
             0.5,
             self.run
@@ -55,10 +51,16 @@ class CustomNode(Node):
     
     def joint_states_callback(self, msg: JointState):
         self.ik_solver.set_joint_angles(np.asarray(msg.position))
-        self.ik_solver.computeJointsTransformMatrix()
+        self.is_angles_publised_ = True
     
     def run(self):
         # self.tf_listener_()
+        if self.is_angles_publised_:
+            goal = mr.FKinSpace(self.ik_solver.homeMatrix, self.ik_solver.Slist, np.array([0.25, 0.0, 0.3]))
+            self.get_logger().info(f'goal : \n{goal}')
+            a = self.ik_solver.solve_IK(goal, pose_tol=10e-5, angle_tol=10e-3)
+            self.get_logger().info(f'angles : \n{a}')
+            self.is_angles_publised_ = False
         pass
 
 
